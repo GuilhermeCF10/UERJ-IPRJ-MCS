@@ -1,61 +1,59 @@
 \section{Atividade 4}
 
 \subsection{Descrição do Modelo e Simulação}
-Nesta atividade, analisamos um sistema de controle típico conforme descrito no diagrama de blocos abaixo. O controlador utilizado é um controlador proporcional com ganho \( K = \frac{m}{3} \). A função de transferência da planta corresponde à função de transferência da Atividade 3. O sensor é modelado por um sistema de primeira ordem com ganho \( K_s = 1 \) e constante de tempo \( T_s = \frac{m}{6} \).
+Nesta atividade, analisamos um sistema de controle típico. Utilizamos um controlador proporcional cujo ganho \( K \) é determinado pela relação \( \frac{m}{3} \), onde \( m \) é a massa do sistema. A função de transferência da planta (Gp) é derivada da equação dinâmica da massa, amortecimento e constante da mola, especificada na Atividade 3. O sensor é modelado por um sistema de primeira ordem, com ganho unitário \( K_s = 1 \) e constante de tempo \( T_s = \frac{m}{6} \).
 
 \subsection{Construção do Diagrama de Blocos}
-O diagrama de blocos do sistema é mostrado abaixo:
+Abaixo, apresentamos o diagrama de blocos para o sistema de controle, ilustrando a interação entre o controlador, a planta e o sensor.
+
 \begin{figure}[H]
     \centering
-    % Inserir diagrama de blocos aqui
-    % \includegraphics[width=0.7\textwidth]{path/to/diagrama_blocos.png}
+    \includegraphics[width=0.7\textwidth]{4-atividade/assets/diagrama.png}
     \caption{Diagrama de blocos do sistema de controle}
     \label{fig:diagrama_blocos}
 \end{figure}
 
-As funções de transferência são definidas como:
+As funções de transferência são especificadas como segue:
 \begin{itemize}
-    \item \( G_c(s) = \frac{m}{3} = \frac{10}{3} \)
-    \item \( G_p(s) = \frac{1}{10 s^2 + 7 s + 5} \)
-    \item \( H(s) = \frac{1}{1 + \frac{10}{6} s} = \frac{1}{1 + 1.6667 s} \)
+    \item Controlador: \( G_c(s) = \frac{m}{3} \) com \( m = 10 \), então \( G_c(s) = \frac{10}{3} \)
+    \item Planta: \( G_p(s) = \frac{1}{m s^2 + C s + K} = \frac{1}{10 s^2 + 7 s + 5} \)
+    \item Sensor: \( H(s) = \frac{1}{1 + \frac{m}{6} s} = \frac{1}{1 + 1.6667 s} \)
 \end{itemize}
 
 \subsection{Função de Transferência em Malha Fechada}
-A função de transferência em malha fechada \( C(s)/R(s) \) é obtida pela relação:
+Calculamos a função de transferência em malha fechada \( C(s)/R(s) \) pela fórmula:
 \[
-    G_{closed}(s) = \frac{G_c(s) G_p(s)}{1 + G_c(s) G_p(s) H(s)}
+    G_{closed}(s) = \frac{G_c(s) \cdot G_p(s)}{1 + G_c(s) \cdot G_p(s) \cdot H(s)}
 \]
-Substituindo as expressões das funções de transferência, temos:
+Substituímos as funções de transferência obtidas:
 \[
     G_{closed}(s) = \frac{\frac{10}{3} \cdot \frac{1}{10 s^2 + 7 s + 5}}{1 + \frac{10}{3} \cdot \frac{1}{10 s^2 + 7 s + 5} \cdot \frac{1}{1 + 1.6667 s}}
 \]
-
-Simplificando a expressão:
+Simplificamos a expressão para chegar à forma final da função de transferência em malha fechada:
 \[
-    G_{closed}(s) = \frac{0.6 + s}{0.9 + 0.92s + 1.3s^2 + s^3}
+    G_{closed}(s) = \frac{0.3333333s + 0.2}{s^3 + 1.3s^2 + 0.92s + 0.5}
 \]
 
 \subsection{Análise de Estabilidade pelo Critério de Routh-Hurwitz}
-A análise de estabilidade é realizada utilizando o critério de Routh-Hurwitz. Os coeficientes do polinômio do denominador da função de transferência em malha fechada foram extraídos e utilizados na matriz de Routh-Hurwitz para determinar a estabilidade do sistema.
+Utilizamos o critério de Routh-Hurwitz para avaliar a estabilidade do sistema, baseando-nos nos coeficientes do denominador da função de transferência em malha fechada.
 
 \subsubsection{Resultados da Análise de Estabilidade}
-A matriz de Routh-Hurwitz calculada é:
+A matriz de Routh-Hurwitz, obtida a partir dos coeficientes do polinômio do denominador, é apresentada a seguir:
 \[
     RH\_matrix = \begin{bmatrix}
-        0.9  & ... \\
+        0.5  & ... \\
         0.92 & ... \\
         1.3  & ... \\
         1    & ... \\
     \end{bmatrix}
 \]
-
-O sistema é estável, pois todos os elementos da primeira coluna da matriz de Routh-Hurwitz são positivos.
+O sistema é considerado estável, pois todos os elementos da primeira coluna são positivos.
 
 \subsection{Análise de Estabilidade para Diferentes Valores de \( K \)}
-Para diferentes valores do ganho do controlador \( K \), a estabilidade do sistema foi verificada. A análise mostrou que o sistema é estável para todos os valores de \( K_p \) testados (de 1 a 10).
+Investigamos a estabilidade do sistema para diferentes valores do ganho do controlador \( K_p \), variando de 1 a 10. As análises mostram que o sistema mantém a estabilidade em todo o intervalo testado.
 
 \subsubsection{Resultados da Resposta ao Degrau}
-Abaixo, mostramos o gráfico da resposta ao degrau para diferentes valores de \( K_p \):
+Abaixo, apresentamos o gráfico da resposta ao degrau para os diferentes valores de \( K_p \):
 
 \begin{figure}[H]
     \centering
@@ -65,4 +63,4 @@ Abaixo, mostramos o gráfico da resposta ao degrau para diferentes valores de \(
 \end{figure}
 
 \subsection{Conclusões}
-A análise da resposta ao degrau e da estabilidade utilizando a matriz de Routh-Hurwitz mostrou que o sistema massa-mola-amortecedor controlado proporcionalmente é estável para os valores de \( K_p \) entre 1 e 10. O comportamento da resposta ao degrau varia significativamente com o ganho do controlador, como esperado, demonstrando a importância de ajustar corretamente o ganho do controlador para atingir a resposta desejada do sistema.
+As análises mostram que o sistema massa-mola-amortecedor controlado proporcionalmente é estável para os valores de \( K_p \) entre 1 e 10. Observa-se que o comportamento da resposta ao degrau varia significativamente com o ganho do controlador, destacando a necessidade de ajuste adequado para alcançar a resposta desejada do sistema.
