@@ -6,11 +6,18 @@
 \usepackage[a4paper, top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}  % Configuração das margens
 \setlength{\parindent}{4em}  % Ajusta a indentação do parágrafo
 \usepackage{indentfirst} % Adiciona indentação ao primeiro parágrafo após seções
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+    {2ex plus 1ex minus .2ex}%
+    {1em}%
+    {\normalfont\normalsize\bfseries}}
+\makeatother
+
 
 
 \begin{document}
 \input{final/1-atividade/latex/atividade1.tex}
-% \input{2-atividade/latex/atividade2.tex}
+\input{final/2-atividade/latex/atividade2.tex}
 % \input{3-atividade/latex/atividade3.tex}
 % \input{4-atividade/latex/atividade4.tex}
 
