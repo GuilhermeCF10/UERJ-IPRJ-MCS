@@ -8,7 +8,7 @@ Abaixo, apresentamos o diagrama de blocos para o sistema de controle, ilustrando
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{4-atividade/assets/diagrama-blocos.png}
+    \includegraphics[width=0.7\textwidth]{atividades/4-atividade/assets/diagrama-blocos.png}
     \caption{Diagrama de blocos do sistema de controle}
     \label{fig:diagrama_blocos}
 \end{figure}
@@ -35,7 +35,7 @@ Simplificamos a expressão para chegar à forma final da função de transferên
 \]
 
 \subsection{Análise de Estabilidade pelo Critério de Routh-Hurwitz}
-Utilizamos o critério de Routh-Hurwitz para avaliar a estabilidade do sistema, baseando-nos nos coeficientes do denominador da função de transferência em malha fechada.
+Utilizamos o critério de Routh-Hurwitz para determinar a estabilidade do sistema, examinando os coeficientes do polinômio do denominador de \( G_{\text{closed}}(s) \).
 
 \subsubsection{Resultados da Análise de Estabilidade}
 A matriz de Routh-Hurwitz, obtida a partir dos coeficientes do polinômio do denominador, é apresentada a seguir:
@@ -49,18 +49,18 @@ A matriz de Routh-Hurwitz, obtida a partir dos coeficientes do polinômio do den
 \]
 O sistema é considerado estável, pois todos os elementos da primeira coluna são positivos.
 
-\subsection{Análise de Estabilidade para Diferentes Valores de \( K \)}
-Investigamos a estabilidade do sistema para diferentes valores do ganho do controlador \( K_p \), variando de 1 a 10. As análises mostram que o sistema mantém a estabilidade em todo o intervalo testado.
+\subsection{Análise de Estabilidade para Diferentes Valores de \( K_p \)}
+Exploramos a estabilidade do sistema para diferentes valores do ganho do controlador \( K_p \), de 1 a 10. Em todos os casos testados, o sistema manteve-se estável.
 
 \subsubsection{Resultados da Resposta ao Degrau}
-Abaixo, apresentamos o gráfico da resposta ao degrau para os diferentes valores de \( K_p \):
+A seguir, apresentamos o gráfico da resposta ao degrau para os diferentes valores de \( K_p \), conforme Figura \ref{fig:resposta-degrau-kp}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{4-atividade/assets/impulsos-diferentes-kp.png}
+    \includegraphics[width=0.7\textwidth]{atividades/4-atividade/assets/impulsos-diferentes-kp.png}
     \caption{Resposta ao degrau para diferentes valores de \( K_p \)}
     \label{fig:resposta-degrau-kp}
 \end{figure}
 
 \subsection{Conclusões}
-As análises mostram que o sistema massa-mola-amortecedor controlado proporcionalmente é estável para os valores de \( K_p \) entre 1 e 10. Observa-se que o comportamento da resposta ao degrau varia significativamente com o ganho do controlador, destacando a necessidade de ajuste adequado para alcançar a resposta desejada do sistema.
+As análises demonstram que o sistema massa-mola-amortecedor, quando controlado proporcionalmente, é estável para valores de \( K_p \) entre 1 e 10. A variabilidade na resposta ao degrau com diferentes ganhos de controlador enfatiza a importância de um ajuste cuidadoso para alcançar a resposta desejada em aplicações práticas.
