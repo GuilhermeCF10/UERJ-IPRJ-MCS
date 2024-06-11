@@ -1,0 +1,222 @@
+% \documentclass[11pt]{article}
+% \usepackage[margin=4cm]{geometry}
+% \usepackage{algpseudocode}
+% \usepackage{algorithm}
+% \begin{document}
+
+% % If you would like to add line numbers to the algorithm, you can add the first line number to the environment as an optional argument \begin{algorithmic}[1]
+% \begin{algorithmic}
+% \State $i \gets 10$
+% \If{$i\geq 5$} 
+%     \State $i \gets i-1$
+% \Else
+%     \If{$i\leq 3$}
+%         \State $i \gets i+2$
+%     \EndIf
+% \EndIf 
+% \end{algorithmic}
+
+% The above algorithm example is not captioned. If you need a captioned algorithm, load the \verb|algorithm| package, and add 
+% \begin{verbatim}
+% \begin{algorithm}
+% \caption{...}
+% ...
+% \end{algorithm}
+% \end{verbatim}
+% around your \verb|algorithmic| environment. You can use \verb|\label{...}| after the \verb|\caption| so that the algorithm number can be cross-referenced, e.g.~Algorithm~\ref{alg:cap} and \ref{alg:wordy}.
+
+% \begin{algorithm}[hbt!]
+% \caption{An algorithm with caption}\label{alg:cap}
+% \begin{algorithmic}
+% \Require $n \geq 0$
+% \Ensure $y = x^n$
+% \State $y \gets 1$
+% \State $X \gets x$
+% \State $N \gets n$
+% \While{$N \neq 0$}
+% \If{$N$ is even}
+%     \State $X \gets X \times X$
+%     \State $N \gets \frac{N}{2} $  \Comment{This is a comment}
+% \ElsIf{$N$ is odd}
+%     \State $y \gets y \times X$
+%     \State $N \gets N - 1$
+% \EndIf
+% \EndWhile
+% \end{algorithmic}
+% \end{algorithm}
+
+% The \verb|algorithm| environment is a \emph{float}, like \verb|table| and \verb|figure|, so you can add float placement modifiers \verb|[hbt!]| after \verb|\begin{algorithm}| if necessary.
+
+% \begin{algorithm}[hbt!]
+% \caption{Another algorithm with caption}\label{alg:wordy}
+% \begin{algorithmic}
+% \Require{Write here the required data}
+% \Ensure{Write here the expected result}
+%  \State initialization;
+%  \While{While condition}
+%   \State instructions;
+%   \If{condition}
+%    \State instructions1;
+%    \State instructions2;
+%   \Else
+%    \State instructions3;
+%   \EndIf
+%  \EndWhile
+% \end{algorithmic}
+% \end{algorithm}
+
+% The \verb|algorithm| package also provides a \verb|\listofalgorithms| command that works like \verb|\listoffigures|, but for captioned algorithms:
+
+% \listofalgorithms
+
+% \end{document}
+
+
+\documentclass[
+    chapter=TITLE,
+    12pt, 		% Tamanho da fonte
+    openright,% Capítulos começam em pág. ímpar (insere página vazia caso preciso)
+    oneside, 	% Para impressão somente verso. Oposto a impressão em verso e anverso
+    hidelinks,
+    a4paper, 	% Tamanho do papel
+    english, 	% Idioma adicional para hifenização
+    brazil 		% o último idioma é o principal do documento
+    ]{abntex2}
+
+\renewcommand{\theequation}{\arabic{equation}}  
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usetikzlibrary{calc}
+\usepackage{lipsum} 	% para geração de dummy text
+\usepackage{multirow}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{svg}
+
+\usepackage{pdflscape} %para poder rotacionar a página
+\usepackage[table,xcdraw]{xcolor}
+
+% Pacotes
+%% Sumário
+\usepackage{tocloft}
+
+%% Referência
+\usepackage[hyphenbreaks]{breakurl}
+% \usepackage[alf]{abntex2cite}
+% \usepackage[alf,abnt-etal-list=0,abnt-etal-cite=3]{abntex2cite} %et al qnd cita apenas
+\usepackage[alf,bibjustif,abnt-etal-cite=2]{abntex2cite} %et al na referência tbm e justificada
+
+
+%\usepackage[hyphenbreaks]{breakurl}
+%\usepackage[num,overcite,'-emphasize=em]{abntex2cite}
+
+%% Codificação
+\usepackage[T1]{fontenc} 	% Codificação de saída
+
+%% Fonte
+\usepackage{times} 			% Times New Roman
+
+\usepackage{lastpage} 		% Usado pela Ficha catalográfica
+\usepackage{indentfirst} 	% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color} 				% Controle das cores
+\usepackage{microtype} 		% Para melhorias de justificação
+\usepackage{lscape} 			% Permite a criação de conteúdo em modo paisagem
+\usepackage{hyperref} 		% Criação de links
+\usepackage{etoolbox}
+
+%% Tabelas
+\usepackage{multirow}
+
+%% Equação
+\usepackage{amsmath}
+
+%% Sumário
+\usepackage{textcase}
+
+%% Imagens
+\usepackage{graphicx} % Inclusão de gráficos
+
+%% Tamanho e alinhamento das legendas
+\usepackage[
+	singlelinecheck=false,
+	justification=justified,
+	font=footnotesize
+	]
+	{caption}
+\usepackage{pdfpages}
+%% Para impressão do Json
+\usepackage{minted}
+
+
+\usepackage{listings}
+
+\include{config}		%Define as configurações do arquivo
+
+\begin{document}
+    \newpage
+\pagenumbering{arabic}
+	%Capa
+	\include{capa}
+	
+	%Folha de rosto
+	\include{folhaderosto}
+	\imprimirfolhaderosto
+
+	%Catalogação Biblioteca
+	\include{catalogacao}
+	
+	%Folha de aprovação
+	\include{folhaaprovacao}
+
+	  \include{dedicatoria}
+	\include{agradecimentos}
+	  \include{epigrafe}
+	\include{resumo}
+	\include{abstract}
+	
+	%Lista de Figuras
+	\renewcommand*\listfigurename{Lista de Figuras}
+	\listoffigures*
+	\cleardoublepage
+
+ 	%Lista de Tabelas
+	\renewcommand*\listtablename{Lista de Tabelas}
+	\listoftables*
+	\cleardoublepage
+ 
+ % \cleardoublepage
+	%\include{abreviaturas}
+	\include{siglas}
+	\include{simbolos}
+	
+	%Sumário
+	\pdfbookmark[0]{\contentsname}{toc}
+	\tableofcontents*
+	\cleardoublepage
+	
+	 % Elementos textuais
+	\textual
+	\include{introducao}
+	\include{cap1}
+	\include{cap2}
+	\include{cap3}
+	\include{cap4}
+	\include{conclusao}
+    % \include{trabalhosFuturos}
+
+    \include{nocite}
+    \bibliography{tcc}
+	% Elementos pós-textuais
+	\postextual
+	% \include{glossario}
+
+	\include{apendices}
+	\include{anexos} 
+	
+	
+	\appendix
+
+% O algoritmo desenvolvido, na linguagem Python versão 3.7.13, está disponível no seguinte link – \textcolor{blue}{\href{https://colab.research.google.com/drive/15zD5uLvgFG42-VionRbaLIMLS6nAn-d3?usp=sharing}{Predição de casos de COVID-19 em Nova Friburgo}}  – de forma aberta, no Google Colaboratory, para fins de pesquisa e aprofundamento do estudo.
+    
+\end{document}
