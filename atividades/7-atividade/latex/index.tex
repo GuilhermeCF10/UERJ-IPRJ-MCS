@@ -1,0 +1,59 @@
+\section{Atividade 7}
+
+\subsection{Análise Avançada do Lugar Geométrico das Raízes (LGR)}
+
+A análise do Lugar Geométrico das Raízes (LGR) no gráfico apresentado (Figura \ref{fig:LGR}) revela detalhes críticos sobre a estabilidade e o comportamento dinâmico do sistema massa-mola-amortecedor. O LGR é uma ferramenta poderosa para visualizar a influência de variações paramétricas sobre os pólos de um sistema de malha aberta, mesmo sem a influência de ganhos externos como controladores ou sensores.
+
+\subsection{Código Scilab para simular a resposta do sistema massa-mola-amortecedor}
+
+O código Scilab apresentado abaixo foi utilizado para gerar o gráfico do Lugar Geométrico das Raízes (LGR), permitindo a análise da estabilidade e do comportamento dinâmico do sistema massa-mola-amortecedor. Este código define os parâmetros do sistema, configura a função de transferência, e plota o LGR com uma configuração específica de cor para facilitar a visualização.
+
+\begin{lstlisting}[language=Scilab, caption=Código Scilab para simular o Lugar geométrico das raízes]
+// Definicao dos parametros
+M = 10;
+C = 7;
+K = 5;
+
+// Funcao de transferencia
+num = 1;
+den = [M, C, K];
+
+// Sistema
+sys = syslin('c', num, den);
+
+// Configuracao da cor para o plot do LGR
+clf();
+sgrid();
+evans(sys, 3000, 'red');
+\end{lstlisting}
+
+O código acima realiza as seguintes ações:
+\begin{itemize}
+    \item \textbf{Definição dos parâmetros:} Os valores de \( M \) (massa), \( C \) (coeficiente de amortecimento) e \( K \) (constante da mola) são definidos conforme especificado.
+    \item \textbf{Configuração da função de transferência:} A função de transferência do sistema massa-mola-amortecedor é configurada utilizando os parâmetros definidos. O numerador da função de transferência é \(1\), enquanto o denominador é dado por \( [M, C, K] \).
+    \item \textbf{Criação do sistema:} O comando \texttt{syslin('c', num, den)} cria a representação do sistema linear contínuo com a função de transferência especificada.
+    \item \textbf{Plot do Lugar Geométrico das Raízes:} Os comandos \texttt{clf()}, \texttt{sgrid()}, e \texttt{evans(sys, 3000, 'red')} limpam a figura, desenham uma grade no plano complexo e plota o LGR do sistema, respectivamente. O parâmetro \texttt{3000} especifica o número de pontos de discretização, e \texttt{'red'} define a cor vermelha para as curvas do LGR.
+\end{itemize}
+
+Este código é fundamental para visualizar como os pólos do sistema variam com mudanças nos parâmetros, permitindo uma análise detalhada da estabilidade e do comportamento dinâmico do sistema massa-mola-amortecedor.
+
+\begin{itemize}
+    \item \textbf{Pólos e Simetria:}
+          Os pólos do sistema são localizados em \( s = -0.7 \) e \( s = -1.2 \). Essa configuração em torno do eixo real indica que os pólos são reais e negativos, o que implica que o sistema não exibe comportamento oscilatório significativo. A simetria sugere que a resposta do sistema será caracterizada por um amortecimento subcrítico, estabilizando-se sem oscilações.
+
+    \item \textbf{Estabilidade e Assíntotas:}
+          O sistema não possui zeros e tem dois pólos, indicando que o número de assíntotas é igual ao número de pólos menos o número de zeros, resultando em duas assíntotas. Estas assíntotas são calculadas pela fórmula \( \alpha_k = \frac{(2k + 1) 180^\circ}{2} \), resultando em \( \alpha_0 = 90^\circ \) e \( \alpha_1 = -90^\circ \) ou \( 270^\circ \). Essas assíntotas verticais sugerem que à medida que o ganho do controlador aumenta, os pólos se movem verticalmente para cima e para baixo no plano complexo, mantendo-se estáveis, já que não cruzam o eixo imaginário.
+
+    \item \textbf{Considerações sobre a Estabilidade:}
+          A localização completa dos pólos no semiplano esquerdo confirma a estabilidade do sistema em malha aberta. Este sistema, portanto, permanece estável independentemente de variações nos parâmetros de controle dentro do range explorado. A ausência de cruzamentos dos pólos pelo eixo imaginário implica que, para o range de ganhos explorado, não há um ganho crítico que possa levar o sistema à instabilidade. No entanto, é essencial considerar que a análise de LGR deve ser complementada com outras técnicas de análise de estabilidade para validar completamente essas conclusões.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{atividades/7-atividade/assets/lgr.png}
+    \caption{Lugar Geométrico das Raízes do sistema massa-mola-amortecedor.}
+    \label{fig:LGR}
+\end{figure}
+
+Esta análise do Lugar Geométrico das Raízes (LGR) sugere uma tendência do sistema de manter a estabilidade diante de variações nos parâmetros, embora essa interpretação dependa de suposições sobre as condições de contorno e a natureza das mudanças paramétricas. As propriedades observadas nos pólos e nas assíntotas, particularmente sua simetria, fornecem indícios importantes para o design de sistemas de controle. No entanto, é essencial considerar que a visualização por meio do LGR oferece uma perspectiva limitada, que precisa ser complementada com outras análises dinâmicas para validar completamente a estabilidade e a eficácia do controle em cenários variados.
+
