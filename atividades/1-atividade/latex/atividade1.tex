@@ -30,6 +30,70 @@ As condições iniciais para a simulação são detalhadas na tabela a seguir, b
 
 Esta tabela reflete os valores numéricos para cada caso, facilitando a compreensão e a aplicação direta dos parâmetros na simulação.
 
+\subsection{Código Scilab para simular a resposta do sistema massa-mola-amortecedor}
+\begin{lstlisting}[language=Scilab, caption=Código Scilab para simular a resposta do sistema massa-mola-amortecedor]
+    // Definicao das principais variaveis do sistema fisico
+    m = 10;  // massa
+    c = 7;   // coeficiente de amortecimento
+    k = 5;   // constante da mola
+
+    // Funcao que define o sistema de equacoes diferenciais (EDO) para o modelo massa-mola-amortecedor
+    function dxdt = sistema(t, x)
+    // x(1) representa o deslocamento, x(2) representa a velocidade
+    // Esta funcao retorna a derivada da velocidade e do deslocamento, respectivamente
+    dxdt = [x(2); -c/m * x(2) - k/m * x(1)];
+    endfunction
+
+    // Configuracao do intervalo de tempo para a simulacao
+    t0 = 0; // Tempo inicial (s)
+    tf = 20; // Tempo final (s)
+    t = linspace(t0, tf, 1000); // Cria um vetor de tempo linearmente espacado para a simulacao
+
+    // Definicao das condicoes iniciais para cada caso de simulacao
+    condicoes_iniciais = [
+    m/5, m/3; // Caso 3: posicao inicial (m) e velocidade inicial (m/s)
+    m/4, 0;   // Caso 2: posicao inicial (m) e velocidade inicial (m/s)
+    0, m/2;   // Caso 1: posicao inicial (m) e velocidade inicial (m/s)
+    ];
+
+    // Cores designadas para cada caso de simulacao para facilitar a visualizacao
+    cores = ['#007bff', '#dc3545', '#8B4513']; // Azul, vermelho, marrom
+
+    // Loop para executar e plotar cada caso de simulacao separadamente
+    for i = 1:3
+        x0 = condicoes_iniciais(i, :)'; // Transpoe as condicoes iniciais para a formatacao correta
+        sol = ode(x0, t0, t, sistema); // Resolve a EDO usando o metodo de ODE
+
+        scf(i); // Cria uma nova figura para cada iteracao
+        plot(t, sol(1, :),  'color', cores(i),  'LineWidth', 2); // Plot do deslocamento x(t)
+        xlabel('Tempo (s)'); // Etiqueta do eixo X
+        ylabel('Deslocamento x(t)'); // Etiqueta do eixo Y
+        title(['Resposta do Sistema para o Caso ', string(i)]); // Titulo do grafico
+        legend('x(t)', "location", "best"); // Legenda
+        xgrid(); // Ativa a grade no grafico
+    end
+
+    // Preparacao do grafico combinado
+    scf(); // Cria uma nova figura
+    clf(); // Limpa a figura atual
+    xlabel('Tempo (s)');
+    ylabel('Deslocamento x(t)');
+    title('Resposta do Sistema para Todos os Casos');
+    xgrid(); // Ativando a grade
+
+    // Execucao da simulacao para cada caso e plotagem no mesmo grafico
+    for i = 1:3
+    x0 = condicoes_iniciais(i, :)'; // Condicoes iniciais para o caso i (transposto para coluna)
+    sol = ode(x0, t0, t, sistema); // Resolvendo a equacao diferencial
+
+    // Plotando os resultados com cores definidas
+    plot(t, sol(1, :), 'color', cores(i), 'LineWidth', 2);
+    end
+
+    // Criar a legenda detalhando cada caso
+    legend(['Caso 1: x0 = 0, v0 = m/2', 'Caso 2: x0 = m/4, v0 = 0', 'Caso 3: x0 = m/5, v0 = m/3'], "location", "best");
+\end{lstlisting}
+
 \subsection{Análise dos Resultados}
 Cada um dos casos de simulação foi configurado com condições iniciais distintas para explorar como o sistema responde a diferentes estados iniciais de deslocamento e velocidade.
 

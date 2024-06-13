@@ -7,7 +7,7 @@ k = 5;   // constante da mola
 function dxdt = sistema(t, x)
   // x(1) representa o deslocamento, x(2) representa a velocidade
   // Esta função retorna a derivada da velocidade e do deslocamento, respectivamente
-  dxdt = [x(2); -C/m * x(2) - K/m * x(1)];
+  dxdt = [x(2); -c/m * x(2) - k/m * x(1)];
 endfunction
 
 // Configuração do intervalo de tempo para a simulação
