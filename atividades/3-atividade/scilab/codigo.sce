@@ -1,7 +1,7 @@
 // Parâmetros do sistema
-m = 10;
-C = 7;
-K = 5;
+m = 10;  // massa
+c = 7;   // coeficiente de amortecimento
+k = 5;   // constante da mola
 
 // Definindo a função de transferência
 s = %s;  // Variável complexa s

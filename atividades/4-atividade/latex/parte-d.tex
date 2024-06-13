@@ -1,0 +1,69 @@
+\subsection{Parte (d): Análise de Estabilidade para Diferentes Valores de \(K\)}
+
+A estabilidade do sistema de controle é investigada para uma variação do ganho \(K\) do controlador proporcional, substituído pelo parâmetro variável \(K\). Utilizamos a função de transferência em malha fechada definida pelos parâmetros físicos do sistema para determinar para quais valores de \(K\) o sistema é estável.
+
+\subsubsection{Definição da Função de Transferência}
+Com base nos parâmetros do sistema, a função de transferência da planta \(G_p(s)\) e do sensor \(H_s(s)\) são definidas como segue:
+
+\[
+    G_p(s) = \frac{1}{10 s^2 + 7 s + 5}
+\]
+
+\[
+    H_s(s) = \frac{1}{\frac{10}{6} s + 1}
+\]
+
+\subsubsection{Função de Transferência em Malha Fechada}
+A função de transferência em malha fechada \(T(s)\), considerando o controlador proporcional \(G_c(s) = K\), é dada por:
+
+\[
+    T(s) = \frac{K \cdot G_p(s)}{1 + K \cdot G_p(s) \cdot H_s(s)}
+\]
+
+Substituindo \(G_c(s)\), \(G_p(s)\), e \(H_s(s)\) com os valores acima, obtemos:
+
+\[
+    T(s) = \frac{K \left(\frac{1}{10 s^2 + 7 s + 5}\right)}{1 + K \left(\frac{1}{10 s^2 + 7 s + 5}\right) \left(\frac{1}{\frac{10}{6}s + 1}\right)}
+\]
+
+Multiplicando numerador e denominador pelo MMC dos denominadores das funções de transferência, obtemos:
+
+\[
+    T(s) = \frac{5Ks + 3K}{3K + 50s^3 + 65s^2 + 46s + 15}
+\]
+Esta função representa a resposta do sistema em função do ganho proporcional \(K\), onde \(K\) modula a entrada em função das dinâmicas combinadas da planta e do sensor.
+
+\subsubsection{Construção da Matriz de Routh-Hurwitz}
+
+A análise da estabilidade do sistema é feita através da matriz de Routh-Hurwitz, que é construída a partir do polinômio característico:
+\[
+    50s^3 + 65s^2 + 46s + 15 + 3K
+\]
+
+A estabilidade do sistema é analisada através da construção da matriz de Routh-Hurwitz para o polinômio característico derivado do denominador da função de transferência em malha fechada:
+\[
+    \begin{array}{c|cc}
+        s^3 & 50                     & 46      \\
+        s^2 & 65                     & 15 + 3K \\
+        s^1 & \frac{150K - 2240}{65} & 0       \\
+        s^0 & 15 + 3K                &         \\
+    \end{array}
+\]
+Onde:
+\[
+    s^1 = \frac{150K - 2240}{65} = 2.3077K - 34.4615
+\]
+
+\subsubsection{Análise de Condições de Estabilidade}
+Para garantir a estabilidade, todos os coeficientes na primeira coluna da matriz de Routh-Hurwitz devem ser positivos:
+\begin{itemize}
+    \item \(s^3 = 50\) é constantemente positivo.
+    \item \(s^2 = 65\) é positivo.
+    \item \(s^1 = 2.3077K - 34.4615 > 0\), o que requer que \(K\) seja menor que \(\frac{34.4615}{2.3077} \approx 14.93\) para manter a positividade deste termo. Assim, a estabilidade é assegurada para \(K < 14.93\).
+    \item \(s^0 = 15 + 3K > 0\), que é trivialmente satisfeito desde que \(K > -5\), mas a condição mais restritiva vem de \(s^1\).
+\end{itemize}
+
+\subsubsection{Conclusão da Análise de Condições de Estabilidade}
+A análise meticulosa da matriz de Routh-Hurwitz indica que o sistema mantém a estabilidade quando o ganho proporcional, \(K\), está dentro do intervalo especificado. Valores de \(K\) superiores a 14.93 podem induzir instabilidade, manifestando-se através de oscilações não amortecidas ou respostas exageradas a perturbações, comprometendo tanto a performance quanto a segurança operacional do sistema.
+
+Assim, é fundamental que \(K\) seja cuidadosamente escolhido para manter-se dentro do intervalo \(0 < K < 14.93\) para assegurar um comportamento estável e previsível do sistema em todas as condições operacionais.

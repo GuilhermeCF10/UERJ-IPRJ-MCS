@@ -1,7 +1,7 @@
 // Definição das principais variáveis do sistema físico
-m = 10; // Massa do objeto (kg)
-C = 7; // Coeficiente de amortecimento (N*s/m)
-K = 5; // Constante da mola (N/m)
+m = 10;  // massa
+c = 7;   // coeficiente de amortecimento
+k = 5;   // constante da mola
 
 // Função que define o sistema de equações diferenciais (EDO) para o modelo massa-mola-amortecedor
 function dxdt = sistema(t, x)

@@ -1,0 +1,61 @@
+\subsection{Parte (b): Função de Transferência em Malha Fechada}
+
+Para o sistema de controle proposto, primeiramente definimos os parâmetros físicos e as configurações do sistema. A planta é um sistema massa-mola-amortecedor, e o controlador utilizado é um controlador proporcional. O sensor é modelado por um sistema de primeira ordem. Os parâmetros são definidos como segue:
+
+\begin{itemize}
+    \item Massa, \(m = 10\, \text{kg}\)
+    \item Coeficiente de amortecimento, \(c = 7\, \text{Ns/m}\)
+    \item Constante da mola, \(k = 5\, \text{N/m}\)
+\end{itemize}
+
+O ganho do controlador proporcional, \(K\), é definido como:
+\[ K = \frac{m}{3} \]
+
+A constante de tempo do sensor, \(T_s\), é determinada por:
+\[ T_s = \frac{m}{6} \]
+
+As funções de transferência para a planta (\(G_p(s)\)), o sensor (\(H_s(s)\)), e o controlador proporcional (\(G_c(s)\)) são definidas da seguinte forma:
+\begin{align*}
+    G_p(s) & = \frac{1}{m s^2 + c s + k} = \frac{1}{10 s^2 + 7 s + 5} \\
+    H_s(s) & = \frac{1}{T_s s + 1} = \frac{1}{\frac{10}{6} s + 1}     \\
+    G_c(s) & = K = \frac{10}{3}
+\end{align*}
+
+\subsubsection{Código Scilab utilizado calcular a Função de Transferência em Malha Fechada}
+\begin{lstlisting}[language=Scilab, caption=Código Scilab para calcular a função de transferência em malha fechada]
+    // Definicao dos parametros
+    s = poly(0, 's');
+    m = 10;  // massa
+    c = 7;   // coeficiente de amortecimento
+    k = 5;   // constante da mola
+    
+    // Definicao das funcoes de transferencia
+    K = m / 3;  // Ganho do controlador proporcional
+    Ts = m / 6;  // Constante de tempo do sensor
+    
+    // Funcoes de Transferencia
+    Gp = syslin('c', 1, m*s^2 + c*s + k);  // Planta
+    Hs = syslin('c', 1, Ts*s + 1);  // Sensor
+    Gc = syslin('c', K, 1);  // Controlador Proporcional
+    
+    // Funcao de Transferencia em Malha Fechada C(s)/R(s)
+    sys = Gc * Gp / (1 + Gc * Gp * Hs);
+    
+    // Exibicao da Funcao de Transferencia em Malha Fechada
+    disp("Funcao de Transferencia em Malha Fechada C(s)/R(s):");
+    disp(sys);
+    \end{lstlisting}
+
+
+
+A função de transferência em malha fechada \(C(s)/R(s)\) é calculada pela integração dessas funções de transferência, resultando na seguinte expressão:
+\[
+    C(s)/R(s) = \frac{G_c(s) G_p(s)}{1 + G_c(s) G_p(s) H_s(s)}
+\]
+
+Após a simplificação e cálculos realizados pelo software Scilab, a função de transferência em malha fechada resultante é:
+\[
+    \frac{0.2 + 0.3333333s}{0.5 + 0.92s + 1.3s^2 + s^3}
+\]
+
+Esta função de transferência em malha fechada indica como o sistema responde à entrada \(R(s)\) dada a configuração de controle atual. A expressão mostra a relação entrada-saída considerando o feedback do sensor e a ação do controlador proporcional.
