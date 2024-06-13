@@ -30,7 +30,7 @@ O sinal de degrau foi configurado para iniciar em 0 e atingir 2.5 no instante \(
     \label{fig:diagrama_blocos_b}
 \end{figure}
 \subsubsection{Resultados da Simulação}
-A resposta do sistema ao degrau é apresentada na figura abaixo, onde são destacados o tempo de subida, tempo de pico, tempo de estabilização e a zona estacionária, utilizando a ferramenta DataTip para marcar esses pontos significativos.
+A resposta do sistema ao degrau é apresentada na figura abaixo, onde são destacados o tempo de subida, tempo de pico, tempo de acomodação e a zona estacionária, utilizando a ferramenta DataTip para marcar esses pontos significativos.
 
 \begin{figure}[H]
     \centering
@@ -43,11 +43,10 @@ A resposta do sistema ao degrau é apresentada na figura abaixo, onde são desta
 A resposta do sistema ao degrau é apresentada na Figura \ref{fig:simulation_5b}, demonstrando as dinâmicas chave do sistema controlado. Analisamos detalhadamente cada parte da resposta:
 
 \begin{itemize}
-    \item \textbf{Tempo de Subida:} O tempo de subida refere-se ao intervalo necessário para que a resposta do sistema suba do estado inicial até o primeiro pico significativo. No gráfico, o sistema leva aproximadamente 5 segundos para atingir o primeiro pico de 1.55. Este comportamento inicial mostra como o sistema responde rapidamente ao degrau, com a energia inicialmente absorvida e depois liberada pela combinação de massa, mola e amortecedor.
-
+    \item \textbf{Tempo de Subida:} O tempo de subida refere-se ao intervalo necessário para que a resposta do sistema suba do estado inicial até um determinado percentual do valor final, geralmente 90\%. No gráfico, o sistema leva aproximadamente 4.8 segundos para atingir um valor próximo de 1.55, que é o primeiro pico significativo. Este comportamento inicial mostra como o sistema responde rapidamente ao degrau, com a energia inicialmente absorvida e depois liberada pela combinação de massa, mola e amortecedor.
     \item \textbf{Tempo de Pico:} O pico ocorre no momento em que a saída atinge seu valor máximo em resposta ao degrau. O primeiro pico de 1.55 é atingido em torno de 5 segundos após a aplicação do degrau, ilustrando a máxima extensão da resposta do sistema antes de começar a amortecer devido às forças de fricção e à força restauradora da mola.
 
-    \item \textbf{Tempo de Estabilização:} Após o pico inicial, o sistema começa a se estabilizar, reduzindo as oscilações até alcançar um estado quase constante. Este período é crucial, pois mostra a eficácia do amortecimento em dissipar a energia inicialmente induzida. No gráfico, o sistema mostra sinais de estabilização em torno de 28 segundos, indicando que o amortecimento e a rigidez da mola estão bem dimensionados para controlar as oscilações.
+    \item \textbf{Tempo de Acomodação:} Após o pico inicial, o sistema começa a se estabilizar, reduzindo as oscilações até alcançar um estado quase constante. Este período é crucial, pois mostra a eficácia do amortecimento em dissipar a energia inicialmente induzida. No gráfico, o sistema mostra sinais de acomodação em torno de 28 segundos, indicando que o amortecimento e a rigidez da mola estão bem dimensionados para controlar as oscilações.
 
     \item \textbf{Zona Estacionária:} O sistema é considerado em estado estacionário quando as oscilações em torno do valor de equilíbrio se tornam negligíveis. No gráfico, isso é observado após aproximadamente 28 segundos, onde a saída mantém-se constante em cerca de 0.998. Esta fase é fundamental para avaliar se o sistema atingiu o equilíbrio desejado após a perturbação inicial.
 \end{itemize}
@@ -86,7 +85,7 @@ Os resultados das simulações são visualizados no gráfico seguinte, onde dife
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Verde (Caso Base)}: A resposta é bastante atenuada, com um pico máximo de aproximadamente 0.311 e estabilização rápida. Este caso mostra a capacidade do sistema de controlar eficazmente pequena perturbações.
+    \item \textbf{Verde (Caso Base)}: A resposta é bastante atenuada, com um pico máximo de aproximadamente 0.311 e acomodação rápida. Este caso mostra a capacidade do sistema de controlar eficazmente pequena perturbações.
 
     \item \textbf{Amarelo (A=2.5, Ganho=3.333)}: Com o aumento da amplitude, o sistema apresenta um overshoot maior, atingindo aproximadamente 1.554, com oscilações mais pronunciadas antes de estabilizar perto de 1.002. Isso indica que a resposta é mais vigorosa devido à maior entrada, mas ainda gerenciável.
 
@@ -97,7 +96,7 @@ Os resultados das simulações são visualizados no gráfico seguinte, onde dife
 A comparação entre os três casos ilustra claramente a influência da amplitude do sinal de entrada e do ganho do controlador sobre a dinâmica do sistema. As principais observações são:
 
 \begin{itemize}
-    \item \textbf{Impacto do Aumento da Amplitude}: O aumento da amplitude do degrau de 1 para 2.5 resulta em um maior overshoot e tempo de estabilização mais longo, o que é esperado em sistemas de controle devido à maior energia introduzida no sistema.
+    \item \textbf{Impacto do Aumento da Amplitude}: O aumento da amplitude do degrau de 1 para 2.5 resulta em um maior overshoot e tempo de acomodação mais longo, o que é esperado em sistemas de controle devido à maior energia introduzida no sistema.
 
     \item \textbf{Efeitos do Aumento do Ganho do Controlador}: Ao dobrar o ganho do controlador de 3.333 para 6.666, enquanto mantendo a amplitude elevada, observa-se uma resposta muito mais volátil e um pico de overshoot quase dobrado. Isso sugere que embora um ganho mais alto possa ser benéfico para uma resposta mais rápida, também pode comprometer a estabilidade geral do sistema.
 

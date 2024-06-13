@@ -1,0 +1,47 @@
+
+\section{Atividade 6}
+
+% \subsection{Introdução ao Modelo com Controlador PID}
+% Os controladores PID são amplamente reconhecidos por sua eficácia e flexibilidade, combinando três elementos distintos para obter um desempenho superior: proporcional, integral e derivativo. Ao contrário dos controladores proporcionais, que ajustam a resposta do sistema de maneira direta ao erro atual, os controladores PID aproveitam três abordagens diferentes, cada uma desempenhando uma função específica.
+
+% O componente proporcional funciona de modo semelhante ao controlador proporcional simples, ajustando a saída do sistema em relação direta ao erro, com o objetivo de reduzir a diferença entre o valor medido e o valor desejado. No entanto, quando o componente proporcional sozinho não consegue corrigir totalmente o erro acumulado, entra em ação o componente integral, que soma e integra o erro ao longo do tempo para eliminá-lo.
+
+% Além disso, o componente derivativo desempenha um papel crucial ao prever mudanças no erro, ajudando a evitar que essas variações causem impactos negativos na saída do sistema. Com a integração desses três elementos, os controladores PID conseguem oferecer um controle mais preciso e estável, ajustando continuamente a saída para manter o sistema no estado desejado.
+% A fórmula padrão de um controlador PID pode ser representada pela equação \ref{eq:pid}:
+% \begin{equation}
+%     u(t) = K_p e(t) + K_i \int_{0}^{t} e(T) dT + K_d \frac{d e(t)}{dt}
+%     \label{eq:pid}
+% \end{equation}
+
+% O método de Ziegler-Nichols, desenvolvido por John G. Ziegler e Nathaniel B. Nichols, é uma técnica consolidada para a sintonia de controladores PID. Este método é particularmente útil porque simplifica a configuração dos controladores ao fornecer fórmulas práticas para calcular os ganhos \( K_p \), \( K_i \), e \( K_d \) com base na resposta do sistema a uma entrada de teste. Esses parâmetros são ajustados para otimizar a resposta do sistema em termos de tempo de subida, sobreposição e tempo de assentamento.
+
+% Os valores dos ganhos são estabelecidos de acordo com a estabilidade observada do sistema e são tipicamente calculados a partir do ganho crítico \( K_c \) e do período crítico \( P_c \), que são obtidos através de testes de malha aberta. A Tabela \ref{tab:ziegler-nichols} resume os valores recomendados para cada tipo de ganho:
+
+% \begin{table}[h]
+%     \centering
+%     \begin{tabular}{ccc}
+%         \hline
+%         \( K_p \)            & \( K_i \)                      & \( K_d \)              \\
+%         \hline
+%         \( 0,6 \times K_c \) & \( \frac{2}{P_c} \) & \( 0,125 \times P_c \) \\
+%         \hline
+%     \end{tabular}
+%     \caption{Valores dos ganhos segundo o método de Ziegler-Nichols}
+%     \label{tab:ziegler-nichols}
+% \end{table}
+
+% ===============================================================
+% Letra A =======================================================
+% \input{6-atividade/latex/parte-a.tex}
+
+% ===============================================================
+% Letra B =======================================================
+% \input{6-atividade/latex/parte-b.tex}
+
+% ===============================================================
+% Letra C =======================================================
+% \input{6-atividade/latex/parte-c.tex}
+
+% ===============================================================
+% Letra D =======================================================
+\input{6-atividade/latex/parte-d.tex}
