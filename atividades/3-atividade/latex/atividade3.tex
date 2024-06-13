@@ -12,6 +12,40 @@ A função de transferência modelada é expressa por:
     G(s) = \frac{1}{10s^2 + 7s + 5}
 \]
 
+\subsection{Código Scilab para a função de transferência em malha fechada}
+\begin{lstlisting}[language=Scilab, caption=Código Scilab para a função de transferência em malha fechada]
+    // Parametros do sistema
+    m = 10;  // massa
+    c = 7;   // coeficiente de amortecimento
+    k = 5;   // constante da mola
+
+    // Definindo a funcao de transferencia
+    s = %s; // Variavel complexa s
+    G = syslin('c', 1 / (m*s^2 + C*s + K));
+
+    // Calculando os polos e exibindo
+    polos = roots(G.den);
+    disp("Polos da funcao de transferencia:");
+    disp(polos);
+
+    // Parametros do sistema de segunda ordem
+    wn = sqrt(K / m);
+    zeta = C / (2 * sqrt(m * K));
+    Kp = 1 / K;  // Ganho estatico para a entrada degrau
+    disp("Frequencia natural nao-amortecida (wn): " + string(wn));
+    disp("Coeficiente de amortecimento (zeta): " + string(zeta));
+    disp("Ganho estatico (Kp): " + string(Kp));
+
+    // Plotando a resposta ao impulso do sistema
+    t = 0:0.01:10;
+    y = csim('imp', t, G);
+    plot(t, y);
+    xlabel("Tempo (s)");
+    ylabel("Resposta ao impulso");
+    title("Resposta ao impulso do sistema massa-mola-amortecedor");
+\end{lstlisting}
+
+
 \subsection{Cálculo dos Polos e Parâmetros do Sistema}
 Os polos da função de transferência são essenciais para entender como o sistema responde a estímulos externos:
 \begin{itemize}
