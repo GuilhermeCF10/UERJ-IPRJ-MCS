@@ -5,9 +5,13 @@
 % ===============================================================
 % Graphic Packages ==============================================
 \usepackage{graphicx}       % Permite a inclusão de imagens no documento.
+\usepackage{tocloft} % Pacote para customização de listas de conteúdos, figuras e tabelas
 \usepackage{tikz}           % Ferramenta poderosa para criar gráficos programaticamente dentro do LaTeX.
 \usetikzlibrary{calc}       % Extensão da biblioteca TikZ que permite cálculos mais complexos de coordenadas.
-
+\usepackage[portuguese]{babel}
+\usepackage{tocloft} % Pacote para customização de listas
+\renewcommand{\listfigurename}{Lista de Figuras} % Altera o título para português
+\AtBeginDocument{\renewcommand{\contentsname}{Sumário}} % Altera nome de conteudo para sumário
 % ===============================================================
 % Mathematical Tools ============================================
 \usepackage{amsmath}        % Melhora a aparência e a flexibilidade de comandos matemáticos.
@@ -47,6 +51,7 @@
 
 % ===============================================================
 % Bloco de código ===============================================
+\usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{courier}
@@ -69,6 +74,7 @@
   xrightmargin=0.15\textwidth,
   morecomment=[l]{//}
 }
+\renewcommand{\lstlistlistingname}{Lista de Códigos} % Comando para renomear o título da Lista de Códigos
 
 % ===============================================================
 % Begin Document ================================================
@@ -76,64 +82,64 @@
 
 % ===============================================================
 % Capa ==========================================================
-% \input{header/capa/latex/capa.tex}
+\input{header/capa/latex/capa.tex}
 
 % ===============================================================
 % Contra Capa ===================================================
-% \input{header/contra-capa/latex/contra-capa.tex}
+\input{header/contra-capa/latex/contra-capa.tex}
 
 % ===============================================================
 % Resumo ========================================================
-% \input{main/resumo/latex/resumo.tex}
+\input{main/resumo/latex/resumo.tex}
 
 % ===============================================================
 % Abstract ======================================================
-% \input{main/abstract/latex/abstract.tex}
+\input{main/abstract/latex/abstract.tex}
 
 % ===============================================================
 % Lista de figuras ==============================================
-% \input{main/abstract/latex/abstract.tex}
+\input{main/lista-de-figuras/latex/index.tex}
 
 % ===============================================================
 % Lista de códigos ==============================================
-% \input{main/abstract/latex/abstract.tex}
+\input{main/lista-de-codigos/latex/index.tex}
 
 % ===============================================================
 % Lista de siglas e abreviaturas ================================
-% \input{main/abstract/latex/abstract.tex}
+\input{main/siglas/latex/index.tex}
 
 % ===============================================================
 % Sumário =======================================================
-% \input{main/abstract/latex/abstract.tex}
+\input{main/sumario/latex/index.tex}
 
 % ===============================================================
 % Introdução ====================================================
-% \input{main/abstract/latex/abstract.tex}
+\input{main/introducao/latex/index.tex}
 
 % ===============================================================
 % Atividades ====================================================
-% \input{atividades/1-atividade/latex/atividade1.tex} % Completa e Validada
-% \input{atividades/2-atividade/latex/atividade2.tex} % Completa e Validadada(Sem força de vontade)
-% \input{atividades/3-atividade/latex/atividade3.tex} % Completa e validada
-% \input{atividades/4-atividade/latex/index.tex} % Completa e validada
-% \input{atividades/5-atividade/latex/atividade5.tex} % Completa e validada
-% \input{atividades/6-atividade/latex/index.tex} % Completa e validada
-% \input{atividades/7-atividade/latex/index.tex} % Completo e Validado
-% \input{atividades/8-atividade/latex/index.tex} % Completo e Validado
-% \input{atividades/9-atividade/latex/index.tex}  % Completo e Validado
-% \input{atividades/10-atividade/latex/index.tex} % Completo e Validado
+\input{atividades/1-atividade/latex/atividade1.tex} % Completa e Validada
+\input{atividades/2-atividade/latex/atividade2.tex} % Completa e Validadada(Sem força de vontade)
+\input{atividades/3-atividade/latex/atividade3.tex} % Completa e validada
+\input{atividades/4-atividade/latex/index.tex} % Completa e validada
+\input{atividades/5-atividade/latex/atividade5.tex} % Completa e validada
+\input{atividades/6-atividade/latex/index.tex} % Completa e validada
+\input{atividades/7-atividade/latex/index.tex} % Completo e Validado
+\input{atividades/8-atividade/latex/index.tex} % Completo e Validado
+\input{atividades/9-atividade/latex/index.tex}  % Completo e Validado
+\input{atividades/10-atividade/latex/index.tex} % Completo e Validado
 
 % ===============================================================
 % Conclusão geral ===============================================
-% \input{main/abstract/latex/abstract.tex}
+\input{main/conclusao/latex/index.tex}
 
 % ===============================================================
 % Referencias ===================================================
-% \input{main/abstract/latex/abstract.tex}
+\input{main/referencias/latex/index.tex}
 
 % ===============================================================
 % Anexo ou Apendices ============================================
-% \input{main/abstract/latex/abstract.tex}
+\input{main/apendice/latex/index.tex}
 
 % ===============================================================
 % End Document ==================================================
