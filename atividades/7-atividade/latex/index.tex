@@ -2,11 +2,10 @@
 
 \subsection{Análise Avançada do Lugar Geométrico das Raízes (LGR)}
 
-A análise do Lugar Geométrico das Raízes (LGR) no gráfico apresentado (Figura \ref{fig:LGR}) revela detalhes críticos sobre a estabilidade e o comportamento dinâmico do sistema massa-mola-amortecedor. O LGR é uma ferramenta poderosa para visualizar a influência de variações paramétricas sobre os pólos de um sistema de malha aberta, mesmo sem a influência de ganhos externos como controladores ou sensores.
-
+A análise do Lugar Geométrico das Raízes (LGR) fornece insights essenciais sobre a estabilidade e as dinâmicas de resposta do sistema massa-mola-amortecedor, essencial para entender como variações nos parâmetros influenciam o sistema.
 \subsection{Código Scilab para simular a resposta do sistema massa-mola-amortecedor}
 
-O código Scilab apresentado abaixo foi utilizado para gerar o gráfico do Lugar Geométrico das Raízes (LGR), permitindo a análise da estabilidade e do comportamento dinâmico do sistema massa-mola-amortecedor. Este código define os parâmetros do sistema, configura a função de transferência, e plota o LGR com uma configuração específica de cor para facilitar a visualização.
+O código Scilab detalhado abaixo estabelece os parâmetros do sistema, formula a função de transferência correspondente e visualiza o LGR, facilitando a identificação visual de características como estabilidade e comportamento assintótico.
 
 \begin{lstlisting}[language=Scilab, caption=Código Scilab para simular o Lugar geométrico das raízes]
 // Definicao dos parametros
@@ -39,13 +38,15 @@ Este código é fundamental para visualizar como os pólos do sistema variam com
 
 \begin{itemize}
     \item \textbf{Pólos e Simetria:}
-          Os pólos do sistema são localizados em \( s = -0.7 \) e \( s = -1.2 \). Essa configuração em torno do eixo real indica que os pólos são reais e negativos, o que implica que o sistema não exibe comportamento oscilatório significativo. A simetria sugere que a resposta do sistema será caracterizada por um amortecimento subcrítico, estabilizando-se sem oscilações.
+          Os pólos do sistema são localizados em \( s = -0.7 \) e \( s = -1.2 \) indicam uma resposta sem oscilações significativas devido ao posicionamento no semiplano esquerdo, caracterizando uma estabilidade inerente. Essa configuração em torno do eixo real indica que os pólos são reais e negativos, o que implica que o sistema não exibe comportamento oscilatório significativo. A simetria sugere que a resposta do sistema será caracterizada por um amortecimento subcrítico, estabilizando-se sem oscilações.
 
     \item \textbf{Estabilidade e Assíntotas:}
-          O sistema não possui zeros e tem dois pólos, indicando que o número de assíntotas é igual ao número de pólos menos o número de zeros, resultando em duas assíntotas. Estas assíntotas são calculadas pela fórmula \( \alpha_k = \frac{(2k + 1) 180^\circ}{2} \), resultando em \( \alpha_0 = 90^\circ \) e \( \alpha_1 = -90^\circ \) ou \( 270^\circ \). Essas assíntotas verticais sugerem que à medida que o ganho do controlador aumenta, os pólos se movem verticalmente para cima e para baixo no plano complexo, mantendo-se estáveis, já que não cruzam o eixo imaginário.
+          O sistema não possui zeros e tem dois pólos, indicando que o número de assíntotas é igual ao número de pólos menos o número de zeros, resultando em duas assíntotas. Estas assíntotas são calculadas pela fórmula \[
+              \alpha_k = \frac{(2k + 1) \cdot 180^\circ}{2},
+          \] resultando em \( \alpha_0 = 90^\circ \) e \( \alpha_1 = -90^\circ \) ou \( 270^\circ \). As assíntotas calculadas, verticais neste caso, preveem que aumentos no ganho do controlador resultarão em movimento vertical dos pólos no plano complexo, preservando a estabilidade enquanto não cruzarem o eixo imaginário.
 
     \item \textbf{Considerações sobre a Estabilidade:}
-          A localização completa dos pólos no semiplano esquerdo confirma a estabilidade do sistema em malha aberta. Este sistema, portanto, permanece estável independentemente de variações nos parâmetros de controle dentro do range explorado. A ausência de cruzamentos dos pólos pelo eixo imaginário implica que, para o range de ganhos explorado, não há um ganho crítico que possa levar o sistema à instabilidade. No entanto, é essencial considerar que a análise de LGR deve ser complementada com outras técnicas de análise de estabilidade para validar completamente essas conclusões.
+          A localização completa dos pólos no semiplano esquerdo confirma a estabilidade do sistema em malha aberta. A análise sugere que o sistema mantém sua estabilidade para os intervalos de ganhos examinados. No entanto, recomenda-se uma investigação adicional, utilizando técnicas como a análise de Nyquist ou Bode, para confirmar essas observações sob uma gama mais ampla de variações paramétricas.
 \end{itemize}
 
 \begin{figure}[h]
