@@ -40,7 +40,7 @@
 \setlength{\parindent}{4em}  % Define o tamanho da indentação para todos os parágrafos.
 \setlength{\emergencystretch}{3em}
 
-% ========================================a=======================
+% ===============================================================
 % Section Heading Customization =================================
 \makeatletter
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
@@ -50,8 +50,19 @@
 \makeatother
 
 % ===============================================================
+% Urls ==========================================================
+\usepackage{hyperref} % Para criar links clicáveis
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    citecolor=blue,
+    pdfborder={0 0 0}  % Remove o quadrado ao redor dos links
+}
+
+% ===============================================================
 % Bloco de código ===============================================
-\usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{courier}
