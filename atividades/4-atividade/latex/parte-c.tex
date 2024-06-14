@@ -32,13 +32,29 @@ Após calcular a função de transferência em malha fechada \(C(s)/R(s)\), o pr
     // Exibir a Matriz de Routh-Hurwitz
     disp("Matriz de Routh-Hurwitz:");
     disp(rh_matrix);
-    \end{lstlisting}
+\end{lstlisting}
 
 
 \subsubsection{Extração do Denominador da Função de Transferência}
 
-A estabilidade do sistema pode ser analisada através do denominador da função de transferência em malha fechada, dado que as raízes do polinômio característico no denominador determinam a resposta do sistema. O denominador extraído é:
-\[ 0.62 + 1s + 1.1s^2 + s^3 \]
+A estabilidade de um sistema de controle pode ser analisada pelo estudo das raízes do polinômio característico do denominador da função de transferência em malha fechada. Estas raízes, também conhecidas como pólos do sistema, determinam como o sistema responde a diferentes entradas ao longo do tempo. A localização desses pólos no plano complexo indica se as respostas do sistema serão estáveis, instáveis ou em um estado de margem de estabilidade.
+
+No caso do sistema considerado, a função de transferência em malha fechada resultante é calculada pelo produto e pela soma das funções de transferência do controlador proporcional, da planta e do sensor, estruturados como segue:
+\[
+    C(s)/R(s) = \frac{Gc \times Gp}{1 + Gc \times Gp \times Hs}
+\]
+A partir desta expressão, o denominador, que contém o polinômio característico do sistema, é dado por:
+\[
+    1 + Gc \times Gp \times Hs
+\]
+Expandindo e simplificando este produto usando os parâmetros e as funções definidas no código Scilab, o denominador da função de transferência em malha fechada é obtido. Este processo resulta em um polinômio em \(s\) que representa a combinação das dinâmicas do controlador, da planta e do sensor.
+
+Para este sistema específico, utilizando os parâmetros dados, o denominador extraído e simplificado é:
+\[
+    0.5 + 0.92s + 1.3s^2 + s^3
+\]
+Este polinômio é então usado para a construção da matriz de Routh-Hurwitz, que é uma técnica clássica de análise de estabilidade, ajudando a determinar a presença de raízes com partes reais não negativas e, consequentemente, se o sistema é estável ou não.
+
 
 
 \subsubsection{Cálculo da Matriz de Routh-Hurwitz}
@@ -46,10 +62,10 @@ A estabilidade do sistema pode ser analisada através do denominador da função
 Para construir a matriz de Routh-Hurwitz, utilizamos a função \texttt{routh\_t} que calcula essa matriz a partir do polinômio característico. A matriz de Routh-Hurwitz para o denominador do sistema é calculada e apresentada como segue:
 \[
     \begin{array}{c|cc}
-        s^3 & 1          & 0.92 \\
-        s^2 & 1.3        & 0.5  \\
-        s^1 & 0.5353846  & 0    \\
-        s^0 & 0.5        &      \\
+        s^3 & 1         & 0.92 \\
+        s^2 & 1.3       & 0.5  \\
+        s^1 & 0.5353846 & 0    \\
+        s^0 & 0.5       &      \\
     \end{array}
 \]
 

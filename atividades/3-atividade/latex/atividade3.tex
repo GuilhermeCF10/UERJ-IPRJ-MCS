@@ -7,9 +7,35 @@ Nesta atividade, desenvolvemos e analisamos a função de transferência de um s
     \item Coeficiente de amortecimento (\( C \)): 7 Ns/m, crucial para atenuar as oscilações e determinar a rapidez com que o sistema atinge um estado de equilíbrio.
     \item Constante da mola (\( K \)): 5 N/m, que define a rigidez do sistema e afeta a frequência das oscilações naturais.
 \end{itemize}
-A função de transferência modelada é expressa por:
+
+A formulação da função de transferência \( G(s) \) se baseia na aplicação da Transformada de Laplace às equações diferenciais que governam o sistema massa-mola-amortecedor. Considerando a segunda lei de Newton, temos:
+
 \[
-    G(s) = \frac{1}{10s^2 + 7s + 5}
+m\ddot{x}(t) + C\dot{x}(t) + Kx(t) = F(t)
+\]
+
+Aplicando a Transformada de Laplace e assumindo condições iniciais nulas (\( x(0) = 0 \) e \( \dot{x}(0) = 0 \)), obtemos:
+
+\[
+m(s^2X(s)) + C(sX(s)) + KX(s) = F(s)
+\]
+
+Agrupando os termos e isolando \( X(s) \):
+
+\[
+(m s^2 + Cs + K)X(s) = F(s)
+\]
+
+Portanto, a função de transferência \( G(s) \) é dada por:
+
+\[
+G(s) = \frac{X(s)}{F(s)} = \frac{1}{m s^2 + Cs + K}
+\]
+
+Substituindo os valores fornecidos ( \( m = 10 \), \( C = 7 \) e \( K = 5 \) ):
+
+\[
+G(s) = \frac{1}{10s^2 + 7s + 5}
 \]
 
 \subsection{Código Scilab para a função de transferência em malha fechada}
