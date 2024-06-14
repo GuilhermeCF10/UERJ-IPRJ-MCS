@@ -61,4 +61,4 @@ Este projeto é licenciado sob os termos da [MIT License](LICENSE).
 
 ## Contato
 
-Para mais informações, entre em contato pelo e-mail: [guilhermecagidefialho@gmail.com](mailto:guilhermecagidefialho@gmail.com)
+Para mais informações, entre em contato pelo e-mail: [guilherme.fialho@grad.iprj.uerj.br](mailto:guilherme.fialho@grad.iprj.uerj.br)
