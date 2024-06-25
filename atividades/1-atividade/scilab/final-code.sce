@@ -17,9 +17,9 @@ t = linspace(t0, tf, 1000); // Cria um vetor de tempo linearmente espaçado para
 
 // Definição das condições iniciais para cada caso de simulação
 condicoes_iniciais = [
-  m/5, m/3; // Caso 3: posição inicial (m) e velocidade inicial (m/s)
-  m/4, 0;   // Caso 2: posição inicial (m) e velocidade inicial (m/s)
   0, m/2;   // Caso 1: posição inicial (m) e velocidade inicial (m/s)
+  m/4, 0;   // Caso 2: posição inicial (m) e velocidade inicial (m/s)
+  m/5, m/3; // Caso 3: posição inicial (m) e velocidade inicial (m/s)
 ];
 
 // Cores designadas para cada caso de simulação para facilitar a visualização
