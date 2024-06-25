@@ -3,38 +3,53 @@
 \subsection{Análise Avançada do Lugar Geométrico das Raízes (LGR)}
 
 A análise do Lugar Geométrico das Raízes (LGR) fornece insights essenciais sobre a estabilidade e as dinâmicas de resposta do sistema massa-mola-amortecedor, essencial para entender como variações nos parâmetros influenciam o sistema.
+
 \subsection{Código Scilab para simular a resposta do sistema massa-mola-amortecedor}
 
 O código Scilab detalhado abaixo estabelece os parâmetros do sistema, formula a função de transferência correspondente e visualiza o LGR, facilitando a identificação visual de características como estabilidade e comportamento assintótico.
 
 \begin{lstlisting}[language=Scilab, caption=Código Scilab para simular o Lugar geométrico das raízes]
-// Definicao dos parametros
-M = 10;
-C = 7;
-K = 5;
-
-// Funcao de transferencia
-num = 1;
-den = [M, C, K];
-
-// Sistema
-sys = syslin('c', num, den);
-
-// Configuracao da cor para o plot do LGR
-clf();
-sgrid();
-evans(sys, 3000, 'red');
+    // Definicao dos parametros
+    M = 10;
+    C = 7;
+    K = 5;
+    
+    // Funcao de transferencia
+    num = 1;  // Numerador e um polinomio constante
+    den = [M, C, K];  // Coeficientes do denominador como vetor
+    den_poly = poly(den, 's', 'coeff');  // Criacao do polinomio do denominador com os coeficientes
+    
+    // Sistema
+    sys = syslin('c', num, den_poly);  // Cria o sistema com a funcao de transferencia
+    
+    // Configuracao da cor para o plot do LGR
+    scf();  // Cria uma nova figura grafica
+    clf();  // Limpa a figura
+    sgrid();  // Adiciona uma grade ao grafico
+    
+    // Configuracoes de visualizacao de linha
+    xset("line style", 4);  // Define o estilo da linha (ex: 4 - pontilhada)
+    xset("thickness", 3);  // Define a espessura da linha
+    xset("foreground", 5);  // Define a cor da linha (ex: 5 - vermelho)
+    
+    // Plotando o LGR com 50 pontos de discretizacao
+    evans(sys, 50);  // Plota o LGR
+    
+    // Ajustes finais no grafico
+    xtitle("Lugar Geometrico das Raizes (LGR)", "Re(s)", "Im(s)");  // Adiciona titulo e rotulos aos eixos
+    
+    // Anotacoes para polos
+    polos = roots(den_poly);  // Calcula os polos do sistema
+    for i = 1:size(polos, "r")
+        // Adiciona anotacoes para cada polo no grafico
+        xstring(real(polos(i)), imag(polos(i)), "Polo: "+string(polos(i)));
+    end
+    
+    // Ajusta a visualizacao para um intervalo que inclua os polos
+    zoom_rect([-1.8, -2.5, 0.2, 2.5]);
 \end{lstlisting}
 
-O código acima realiza as seguintes ações:
-\begin{itemize}
-    \item \textbf{Definição dos parâmetros:} Os valores de \( M \) (massa), \( C \) (coeficiente de amortecimento) e \( K \) (constante da mola) são definidos conforme especificado.
-    \item \textbf{Configuração da função de transferência:} A função de transferência do sistema massa-mola-amortecedor é configurada utilizando os parâmetros definidos. O numerador da função de transferência é \(1\), enquanto o denominador é dado por \( [M, C, K] \).
-    \item \textbf{Criação do sistema:} O comando \texttt{syslin('c', num, den)} cria a representação do sistema linear contínuo com a função de transferência especificada.
-    \item \textbf{Plot do Lugar Geométrico das Raízes:} Os comandos \texttt{clf()}, \texttt{sgrid()}, e \texttt{evans(sys, 3000, 'red')} limpam a figura, desenham uma grade no plano complexo e plota o LGR do sistema, respectivamente. O parâmetro \texttt{3000} especifica o número de pontos de discretização, e \texttt{'red'} define a cor vermelha para as curvas do LGR.
-\end{itemize}
-
-Este código é fundamental para visualizar como os pólos do sistema variam com mudanças nos parâmetros, permitindo uma análise detalhada da estabilidade e do comportamento dinâmico do sistema massa-mola-amortecedor.
+Este código é fundamental para visualizar como os polos do sistema variam com mudanças nos parâmetros, permitindo uma análise detalhada da estabilidade e do comportamento dinâmico do sistema massa-mola-amortecedor.
 
 \begin{figure}[h]
     \centering
@@ -47,15 +62,14 @@ Esta análise do Lugar Geométrico das Raízes (LGR) sugere uma tendência do si
 
 \begin{itemize}
     \item \textbf{Pólos e Simetria:}
-          Os pólos do sistema são localizados em \( s = -0.7 \) e \( s = -1.2 \) indicam uma resposta sem oscilações significativas devido ao posicionamento no semiplano esquerdo, caracterizando uma estabilidade inerente. Essa configuração em torno do eixo real indica que os pólos são reais e negativos, o que implica que o sistema não exibe comportamento oscilatório significativo. A simetria sugere que a resposta do sistema será caracterizada por um amortecimento subcrítico, estabilizando-se sem oscilações.
-
+          Os pólos do sistema, identificados claramente no LGR como \( s = -0.35 \pm j1.228\) (como mostrado na imagem com precisão real e imaginária), indicam uma resposta subamortecida do sistema devido ao posicionamento no semiplano esquerdo. A configuração destes pólos no semiplano esquerdo sugere uma estabilidade inerente sem oscilações não amortecidas.
+          
     \item \textbf{Estabilidade e Assíntotas:}
-          O sistema não possui zeros e tem dois pólos, indicando que o número de assíntotas é igual ao número de pólos menos o número de zeros, resultando em duas assíntotas. Estas assíntotas são calculadas pela fórmula \[
-              \alpha_k = \frac{(2k + 1) \cdot 180^\circ}{2},
-          \] resultando em \( \alpha_0 = 90^\circ \) e \( \alpha_1 = -90^\circ \) ou \( 270^\circ \). As assíntotas calculadas, verticais neste caso, preveem que aumentos no ganho do controlador resultarão em movimento vertical dos pólos no plano complexo, preservando a estabilidade enquanto não cruzarem o eixo imaginário.
+          O sistema exibe duas assíntotas calculadas a partir da posição dos polos, indicando um movimento vertical dos pólos no plano complexo com o aumento do ganho do controlador. Estas assíntotas estão orientadas a \(90^\circ\) e \(-90^\circ\), garantindo que qualquer aumento nos parâmetros de controle mantenha a estabilidade desde que os pólos não cruzem o eixo imaginário.
 
     \item \textbf{Considerações sobre a Estabilidade:}
-          A localização completa dos pólos no semiplano esquerdo confirma a estabilidade do sistema em malha aberta. A análise sugere que o sistema mantém sua estabilidade para os intervalos de ganhos examinados. No entanto, recomenda-se uma investigação adicional, utilizando técnicas como a análise de Nyquist ou Bode, para confirmar essas observações sob uma gama mais ampla de variações paramétricas.
+          A análise do LGR confirma a estabilidade do sistema com os pólos localizados estritamente no semiplano esquerdo. Entretanto, para garantir a validade dessa estabilidade sob diversas condições operacionais, sugere-se realizar análises adicionais como a de Nyquist ou Bode para avaliar a resposta do sistema frente a uma gama mais ampla de variações paramétricas.
 \end{itemize}
+
 
 
